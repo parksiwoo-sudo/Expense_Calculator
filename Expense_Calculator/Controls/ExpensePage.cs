@@ -21,8 +21,8 @@ namespace Expense_Calculator.Controls
             txtBudget.TextChanged += TxtBudget_TextChanged;
         }
 
-        // 예산 텍스트박스가 바뀔 때 실행되는 이벤트
-        private void TxtBudget_TextChanged(object sender, EventArgs e)
+        // 예산 텍스트박스가 바뀔 때 실행되는 이벤트 (sender에 ? 추가하여 경고 해결)
+        private void TxtBudget_TextChanged(object? sender, EventArgs e)
         {
             UpdateStatistics();
         }
@@ -86,7 +86,7 @@ namespace Expense_Calculator.Controls
                     x += imageWidth + 6; // 이미지 너비만큼 텍스트 시작 위치를 오른쪽으로 미룸
                 }
 
-                // 카테고리 텍스트 출력
+                // 카테고리 텍스트 출력 (e.Font -> e.SubItem.Font로 수정)
                 using (Brush brush = new SolidBrush(e.SubItem.ForeColor))
                 {
                     StringFormat sf = new StringFormat
@@ -95,7 +95,7 @@ namespace Expense_Calculator.Controls
                         Alignment = StringAlignment.Near
                     };
                     Rectangle textRect = new Rectangle(x, e.Bounds.Y, e.Bounds.Width - (x - e.Bounds.X), e.Bounds.Height);
-                    e.Graphics.DrawString(categoryText, e.Font, brush, textRect, sf);
+                    e.Graphics.DrawString(categoryText, e.SubItem.Font, brush, textRect, sf);
                 }
             }
             else // 나머지 컬럼 (번호, 날짜, 지출내용, 금액)
@@ -114,7 +114,7 @@ namespace Expense_Calculator.Controls
                         sf.Alignment = StringAlignment.Far;
 
                     Rectangle rect = new Rectangle(e.Bounds.X + 4, e.Bounds.Y, e.Bounds.Width - 8, e.Bounds.Height);
-                    e.Graphics.DrawString(e.SubItem.Text, e.Font, brush, rect, sf);
+                    e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, brush, rect, sf); // e.Font -> e.SubItem.Font로 수정
                 }
             }
         }

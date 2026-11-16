@@ -8,19 +8,29 @@ using System.Windows.Forms;
 
 namespace Expense_Calculator.Controls
 {
+
     public partial class ExpensePage : UserControl
     {
+        // 기본 월 예산 100만원
+        private decimal budget = 1000000m;
         public ExpensePage()
         {
             InitializeComponent();
 
-            // 리스트뷰(표) 디자인 세팅
             InitListView();
 
-            // 월 예산 입력창에 숫자를 바꾸는 순간 실시간으로 퍼센트와 게이지 갱신
-            txtBudget.TextChanged += TxtBudget_TextChanged;
-        }
+            // 기본 예산 표시
+            txtBudget.Text = budget.ToString("N0");
 
+            // 예산 변경 이벤트
+            txtBudget.TextChanged += TxtBudget_TextChanged;
+
+            // 최초 통계 갱신
+            UpdateStatistics();
+
+            // 지출 내용 입력창 이벤트
+
+        }
         // 예산 텍스트박스가 바뀔 때 실행되는 이벤트 (sender에 ? 추가하여 경고 해결)
         private void TxtBudget_TextChanged(object? sender, EventArgs e)
         {
@@ -262,6 +272,24 @@ namespace Expense_Calculator.Controls
                 if (intPercent < 0) intPercent = 0;
 
                 progressBarBudget.Value = intPercent;
+            }
+
+        }
+        // 지출 내용 입력창에 포커스가 들어왔을 때
+        private void txtDescription_Enter(object sender, EventArgs e)
+        {
+            if (txtDescription.Text == "지출 내용")
+            {
+                txtDescription.Text = "";
+            }
+        }
+
+        // 입력창에서 포커스가 벗어났을 때
+        private void txtDescription_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtDescription.Text))
+            {
+                txtDescription.Text = "지출 내용";
             }
         }
     }

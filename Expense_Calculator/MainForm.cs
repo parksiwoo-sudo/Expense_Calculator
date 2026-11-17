@@ -4,6 +4,7 @@ namespace Expense_Calculator
 {
     public partial class MainForm : Form
     {
+        private List<Expense> expenses = new List<Expense>();
         public MainForm()
         {
             InitializeComponent();
@@ -11,7 +12,7 @@ namespace Expense_Calculator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ExpensePage expensePage = new ExpensePage();
+            ExpensePage expensePage = new ExpensePage(expenses);
 
             expensePage.Dock = DockStyle.Fill;
 
@@ -21,7 +22,8 @@ namespace Expense_Calculator
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ExpensePage expensePage = new ExpensePage();
+
+            ExpensePage expensePage = new ExpensePage(expenses);
 
             expensePage.Dock = DockStyle.Fill;
 

@@ -5,17 +5,21 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
+using System.Collections.Generic;
+using Expense_Calculator;
 namespace Expense_Calculator.Controls
 {
 
     public partial class ExpensePage : UserControl
     {
+        private List<Expense> expenses;
         // 기본 월 예산 100만원
         private decimal budget = 1000000m;
-        public ExpensePage()
+        public ExpensePage(List<Expense> expenses)
         {
             InitializeComponent();
+
+            this.expenses = expenses;
 
             InitListView();
 

@@ -118,19 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="list.png" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\list.png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pen.png" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pen.png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="coins.png" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\coins.png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="calendar.png" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\calendar.png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="shopping.png" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shopping.png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+	<data name="icon_header_chart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+		<value>..\Resources\icon_header_chart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+	</data>
+	<data name="list.png" type="System.Resources.ResXFileRef, System.Windows.Forms">
+		<value>..\Resources\list.png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+	</data>
+	<data name="pen.png" type="System.Resources.ResXFileRef, System.Windows.Forms">
+		<value>..\Resources\pen.png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+	</data>
+	<data name="coins.png" type="System.Resources.ResXFileRef, System.Windows.Forms">
+		<value>..\Resources\coins.png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+	</data>
+	<data name="calendar.png" type="System.Resources.ResXFileRef, System.Windows.Forms">
+		<value>..\Resources\calendar.png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+	</data>
+	<data name="shopping.png" type="System.Resources.ResXFileRef, System.Windows.Forms">
+		<value>..\Resources\shopping.png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+	</data>
 </root>

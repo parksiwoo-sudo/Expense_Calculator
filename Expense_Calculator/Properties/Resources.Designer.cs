@@ -83,6 +83,16 @@ namespace Expense_Calculator.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_header_chart {
+            get {
+                object obj = ResourceManager.GetObject("icon_header_chart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap list_png {
             get {
                 object obj = ResourceManager.GetObject("list.png", resourceCulture);

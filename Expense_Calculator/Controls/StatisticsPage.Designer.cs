@@ -29,9 +29,681 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StatisticsPage));
+            ListViewItem listViewItem1 = new ListViewItem(new string[] { "식비", "\\", "%" }, -1, Color.Empty, Color.Empty, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129));
+            ListViewItem listViewItem2 = new ListViewItem(new ListViewItem.ListViewSubItem[] { new ListViewItem.ListViewSubItem(null, "교통비", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)), new ListViewItem.ListViewSubItem(null, "\\", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)), new ListViewItem.ListViewSubItem(null, "%", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)) }, -1);
+            ListViewItem listViewItem3 = new ListViewItem(new ListViewItem.ListViewSubItem[] { new ListViewItem.ListViewSubItem(null, "쇼핑", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)), new ListViewItem.ListViewSubItem(null, "\\", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)), new ListViewItem.ListViewSubItem(null, "%", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)) }, -1);
+            ListViewItem listViewItem4 = new ListViewItem(new ListViewItem.ListViewSubItem[] { new ListViewItem.ListViewSubItem(null, "문화생활", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)), new ListViewItem.ListViewSubItem(null, "\\", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)), new ListViewItem.ListViewSubItem(null, "%", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)) }, -1);
+            ListViewItem listViewItem5 = new ListViewItem(new ListViewItem.ListViewSubItem[] { new ListViewItem.ListViewSubItem(null, "생활용품", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)), new ListViewItem.ListViewSubItem(null, "\\", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)), new ListViewItem.ListViewSubItem(null, "%", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)) }, -1);
+            ListViewItem listViewItem6 = new ListViewItem(new ListViewItem.ListViewSubItem[] { new ListViewItem.ListViewSubItem(null, "기타", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)), new ListViewItem.ListViewSubItem(null, "\\", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)), new ListViewItem.ListViewSubItem(null, "%", SystemColors.WindowText, SystemColors.Window, new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129)) }, -1);
+            pnlHeader = new Panel();
+            picHeader = new PictureBox();
+            lblSubTitle = new Label();
+            lblTitle = new Label();
+            cardSummary = new Panel();
+            pnlSummaryInner = new Panel();
+            lblCountValue = new Label();
+            number = new Label();
+            pic = new PictureBox();
+            pnlLine = new Panel();
+            picTotal = new PictureBox();
+            lblTotalValue = new Label();
+            amount = new Label();
+            lblSummaryTitle = new Label();
+            picSummary = new PictureBox();
+            cardPeriod = new Panel();
+            pnlPeriodSum = new Panel();
+            lblPeriodValue = new Label();
+            label11 = new Label();
+            btnSearch = new Button();
+            cboMonth = new ComboBox();
+            Month = new Label();
+            cboYear = new ComboBox();
+            picCount = new PictureBox();
+            Year = new Label();
+            lblPeriodTitle = new Label();
+            cardCategory = new Panel();
+            picChart = new PictureBox();
+            lvCategory = new ListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            lblCategoryTitle = new Label();
+            picCategory = new PictureBox();
+            cardBudget = new Panel();
+            panel10 = new Panel();
+            panel8 = new Panel();
+            panel9 = new Panel();
+            lblRemainPercent = new Label();
+            lblUsedPercent = new Label();
+            pbBudget = new ProgressBar();
+            lblRemainValue = new Label();
+            above = new Label();
+            lblBudgetValue = new Label();
+            NOW = new Label();
+            lblUsedValue = new Label();
+            MonthBudget = new Label();
+            lblBudgetTitle = new Label();
+            picBudget = new PictureBox();
+            imgColors = new ImageList(components);
+            pnlHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picHeader).BeginInit();
+            cardSummary.SuspendLayout();
+            pnlSummaryInner.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picTotal).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picSummary).BeginInit();
+            cardPeriod.SuspendLayout();
+            pnlPeriodSum.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picCount).BeginInit();
+            cardCategory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picChart).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picCategory).BeginInit();
+            cardBudget.SuspendLayout();
+            panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picBudget).BeginInit();
+            SuspendLayout();
+            // 
+            // pnlHeader
+            // 
+            pnlHeader.Controls.Add(picHeader);
+            pnlHeader.Controls.Add(lblSubTitle);
+            pnlHeader.Controls.Add(lblTitle);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Name = "pnlHeader";
+            pnlHeader.Size = new Size(1220, 100);
+            pnlHeader.TabIndex = 0;
+            // 
+            // picHeader
+            // 
+            picHeader.Image = (Image)resources.GetObject("picHeader.Image");
+            picHeader.Location = new Point(7, 10);
+            picHeader.Name = "picHeader";
+            picHeader.Size = new Size(59, 59);
+            picHeader.SizeMode = PictureBoxSizeMode.Zoom;
+            picHeader.TabIndex = 1;
+            picHeader.TabStop = false;
+            // 
+            // lblSubTitle
+            // 
+            lblSubTitle.AutoSize = true;
+            lblSubTitle.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            lblSubTitle.ForeColor = Color.Black;
+            lblSubTitle.Location = new Point(72, 48);
+            lblSubTitle.Name = "lblSubTitle";
+            lblSubTitle.Size = new Size(462, 21);
+            lblSubTitle.TabIndex = 1;
+            lblSubTitle.Text = "등록된 지출 내역을 기반으로 지출 현황을 확인할 수 있습니다.";
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("맑은 고딕", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblTitle.Location = new Point(70, 8);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(233, 37);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "지출 통계 및 분석";
+            // 
+            // cardSummary
+            // 
+            cardSummary.BackColor = Color.White;
+            cardSummary.Controls.Add(pnlSummaryInner);
+            cardSummary.Controls.Add(lblSummaryTitle);
+            cardSummary.Controls.Add(picSummary);
+            cardSummary.Location = new Point(15, 100);
+            cardSummary.Name = "cardSummary";
+            cardSummary.Size = new Size(650, 250);
+            cardSummary.TabIndex = 1;
+            // 
+            // pnlSummaryInner
+            // 
+            pnlSummaryInner.BackColor = Color.FromArgb(245, 247, 252);
+            pnlSummaryInner.Controls.Add(lblCountValue);
+            pnlSummaryInner.Controls.Add(number);
+            pnlSummaryInner.Controls.Add(pic);
+            pnlSummaryInner.Controls.Add(pnlLine);
+            pnlSummaryInner.Controls.Add(picTotal);
+            pnlSummaryInner.Controls.Add(lblTotalValue);
+            pnlSummaryInner.Controls.Add(amount);
+            pnlSummaryInner.Location = new Point(20, 65);
+            pnlSummaryInner.Name = "pnlSummaryInner";
+            pnlSummaryInner.Size = new Size(610, 160);
+            pnlSummaryInner.TabIndex = 2;
+            // 
+            // lblCountValue
+            // 
+            lblCountValue.AutoSize = true;
+            lblCountValue.Font = new Font("맑은 고딕", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblCountValue.Location = new Point(415, 62);
+            lblCountValue.Name = "lblCountValue";
+            lblCountValue.Size = new Size(63, 40);
+            lblCountValue.TabIndex = 6;
+            lblCountValue.Text = "0건";
+            // 
+            // number
+            // 
+            number.AutoSize = true;
+            number.Location = new Point(415, 38);
+            number.Name = "number";
+            number.Size = new Size(59, 15);
+            number.TabIndex = 5;
+            number.Text = "등록 건수";
+            // 
+            // pic
+            // 
+            pic.Image = (Image)resources.GetObject("pic.Image");
+            pic.Location = new Point(335, 45);
+            pic.Name = "pic";
+            pic.Size = new Size(64, 64);
+            pic.SizeMode = PictureBoxSizeMode.Zoom;
+            pic.TabIndex = 4;
+            pic.TabStop = false;
+            // 
+            // pnlLine
+            // 
+            pnlLine.BackColor = Color.FromArgb(220, 224, 232);
+            pnlLine.Location = new Point(305, 25);
+            pnlLine.Name = "pnlLine";
+            pnlLine.Size = new Size(1, 110);
+            pnlLine.TabIndex = 3;
+            // 
+            // picTotal
+            // 
+            picTotal.Image = (Image)resources.GetObject("picTotal.Image");
+            picTotal.Location = new Point(25, 45);
+            picTotal.Name = "picTotal";
+            picTotal.Size = new Size(64, 64);
+            picTotal.SizeMode = PictureBoxSizeMode.Zoom;
+            picTotal.TabIndex = 2;
+            picTotal.TabStop = false;
+            // 
+            // lblTotalValue
+            // 
+            lblTotalValue.AutoSize = true;
+            lblTotalValue.Font = new Font("맑은 고딕", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblTotalValue.Location = new Point(105, 62);
+            lblTotalValue.Name = "lblTotalValue";
+            lblTotalValue.Size = new Size(58, 40);
+            lblTotalValue.TabIndex = 1;
+            lblTotalValue.Text = "₩0";
+            // 
+            // amount
+            // 
+            amount.AutoSize = true;
+            amount.Location = new Point(105, 38);
+            amount.Name = "amount";
+            amount.Size = new Size(75, 15);
+            amount.TabIndex = 0;
+            amount.Text = "총 지출 금액";
+            // 
+            // lblSummaryTitle
+            // 
+            lblSummaryTitle.AutoSize = true;
+            lblSummaryTitle.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblSummaryTitle.Location = new Point(58, 14);
+            lblSummaryTitle.Name = "lblSummaryTitle";
+            lblSummaryTitle.Size = new Size(140, 25);
+            lblSummaryTitle.TabIndex = 1;
+            lblSummaryTitle.Text = "전체 지출 요약";
+            // 
+            // picSummary
+            // 
+            picSummary.Image = (Image)resources.GetObject("picSummary.Image");
+            picSummary.Location = new Point(15, 10);
+            picSummary.Name = "picSummary";
+            picSummary.Size = new Size(36, 36);
+            picSummary.SizeMode = PictureBoxSizeMode.Zoom;
+            picSummary.TabIndex = 0;
+            picSummary.TabStop = false;
+            // 
+            // cardPeriod
+            // 
+            cardPeriod.BackColor = Color.White;
+            cardPeriod.Controls.Add(pnlPeriodSum);
+            cardPeriod.Controls.Add(btnSearch);
+            cardPeriod.Controls.Add(cboMonth);
+            cardPeriod.Controls.Add(Month);
+            cardPeriod.Controls.Add(cboYear);
+            cardPeriod.Controls.Add(picCount);
+            cardPeriod.Controls.Add(Year);
+            cardPeriod.Controls.Add(lblPeriodTitle);
+            cardPeriod.Location = new Point(680, 100);
+            cardPeriod.Name = "cardPeriod";
+            cardPeriod.Size = new Size(525, 250);
+            cardPeriod.TabIndex = 2;
+            // 
+            // pnlPeriodSum
+            // 
+            pnlPeriodSum.BackColor = Color.FromArgb(245, 247, 252);
+            pnlPeriodSum.Controls.Add(lblPeriodValue);
+            pnlPeriodSum.Controls.Add(label11);
+            pnlPeriodSum.Location = new Point(20, 150);
+            pnlPeriodSum.Name = "pnlPeriodSum";
+            pnlPeriodSum.Size = new Size(485, 75);
+            pnlPeriodSum.TabIndex = 7;
+            // 
+            // lblPeriodValue
+            // 
+            lblPeriodValue.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblPeriodValue.Font = new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            lblPeriodValue.ForeColor = Color.FromArgb(0, 70, 200);
+            lblPeriodValue.Location = new Point(230, 15);
+            lblPeriodValue.Name = "lblPeriodValue";
+            lblPeriodValue.Size = new Size(240, 45);
+            lblPeriodValue.TabIndex = 1;
+            lblPeriodValue.Text = "\\";
+            lblPeriodValue.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("맑은 고딕", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            label11.Location = new Point(15, 25);
+            label11.Name = "label11";
+            label11.Size = new Size(185, 25);
+            label11.TabIndex = 0;
+            label11.Text = "조회 기간 지출 합계";
+            // 
+            // btnSearch
+            // 
+            btnSearch.BackColor = Color.FromArgb(0, 102, 255);
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            btnSearch.ForeColor = Color.White;
+            btnSearch.Location = new Point(345, 82);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(150, 42);
+            btnSearch.TabIndex = 6;
+            btnSearch.Text = "조회";
+            btnSearch.UseVisualStyleBackColor = false;
+            // 
+            // cboMonth
+            // 
+            cboMonth.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboMonth.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            cboMonth.FormattingEnabled = true;
+            cboMonth.Items.AddRange(new object[] { "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" });
+            cboMonth.Location = new Point(190, 88);
+            cboMonth.Name = "cboMonth";
+            cboMonth.Size = new Size(130, 29);
+            cboMonth.TabIndex = 5;
+            // 
+            // Month
+            // 
+            Month.AutoSize = true;
+            Month.Location = new Point(190, 62);
+            Month.Name = "Month";
+            Month.Size = new Size(19, 15);
+            Month.TabIndex = 4;
+            Month.Text = "월";
+            // 
+            // cboYear
+            // 
+            cboYear.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboYear.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            cboYear.FormattingEnabled = true;
+            cboYear.Location = new Point(20, 88);
+            cboYear.Name = "cboYear";
+            cboYear.Size = new Size(150, 29);
+            cboYear.TabIndex = 3;
+            // 
+            // picCount
+            // 
+            picCount.Image = (Image)resources.GetObject("picCount.Image");
+            picCount.Location = new Point(15, 10);
+            picCount.Name = "picCount";
+            picCount.Size = new Size(36, 36);
+            picCount.SizeMode = PictureBoxSizeMode.Zoom;
+            picCount.TabIndex = 2;
+            picCount.TabStop = false;
+            // 
+            // Year
+            // 
+            Year.AutoSize = true;
+            Year.Location = new Point(20, 62);
+            Year.Name = "Year";
+            Year.Size = new Size(31, 15);
+            Year.TabIndex = 1;
+            Year.Text = "연도";
+            // 
+            // lblPeriodTitle
+            // 
+            lblPeriodTitle.AutoSize = true;
+            lblPeriodTitle.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblPeriodTitle.Location = new Point(58, 14);
+            lblPeriodTitle.Name = "lblPeriodTitle";
+            lblPeriodTitle.Size = new Size(159, 25);
+            lblPeriodTitle.TabIndex = 0;
+            lblPeriodTitle.Text = "기간별 지출 조회";
+            // 
+            // cardCategory
+            // 
+            cardCategory.BackColor = Color.White;
+            cardCategory.Controls.Add(picChart);
+            cardCategory.Controls.Add(lvCategory);
+            cardCategory.Controls.Add(lblCategoryTitle);
+            cardCategory.Controls.Add(picCategory);
+            cardCategory.Location = new Point(15, 365);
+            cardCategory.Name = "cardCategory";
+            cardCategory.Size = new Size(760, 520);
+            cardCategory.TabIndex = 3;
+            // 
+            // picChart
+            // 
+            picChart.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            picChart.BackColor = Color.White;
+            picChart.Location = new Point(15, 70);
+            picChart.Name = "picChart";
+            picChart.Size = new Size(320, 430);
+            picChart.TabIndex = 3;
+            picChart.TabStop = false;
+            // 
+            // lvCategory
+            // 
+            lvCategory.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lvCategory.BorderStyle = BorderStyle.None;
+            lvCategory.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
+            lvCategory.Font = new Font("맑은 고딕", 18F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lvCategory.FullRowSelect = true;
+            lvCategory.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            lvCategory.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5, listViewItem6 });
+            lvCategory.Location = new Point(350, 100);
+            lvCategory.Name = "lvCategory";
+            lvCategory.Scrollable = false;
+            lvCategory.Size = new Size(348, 271);
+            lvCategory.TabIndex = 2;
+            lvCategory.UseCompatibleStateImageBehavior = false;
+            lvCategory.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "카테고리";
+            columnHeader1.Width = 130;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "지출 금액";
+            columnHeader2.TextAlign = HorizontalAlignment.Right;
+            columnHeader2.Width = 130;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "비율";
+            columnHeader3.TextAlign = HorizontalAlignment.Right;
+            columnHeader3.Width = 90;
+            // 
+            // lblCategoryTitle
+            // 
+            lblCategoryTitle.AutoSize = true;
+            lblCategoryTitle.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblCategoryTitle.Location = new Point(58, 14);
+            lblCategoryTitle.Name = "lblCategoryTitle";
+            lblCategoryTitle.Size = new Size(197, 25);
+            lblCategoryTitle.TabIndex = 1;
+            lblCategoryTitle.Text = "카테고리별 지출 통계";
+            // 
+            // picCategory
+            // 
+            picCategory.Image = (Image)resources.GetObject("picCategory.Image");
+            picCategory.Location = new Point(15, 10);
+            picCategory.Name = "picCategory";
+            picCategory.Size = new Size(36, 36);
+            picCategory.SizeMode = PictureBoxSizeMode.Zoom;
+            picCategory.TabIndex = 0;
+            picCategory.TabStop = false;
+            // 
+            // cardBudget
+            // 
+            cardBudget.BackColor = Color.White;
+            cardBudget.Controls.Add(panel10);
+            cardBudget.Controls.Add(panel8);
+            cardBudget.Controls.Add(lblRemainPercent);
+            cardBudget.Controls.Add(lblUsedPercent);
+            cardBudget.Controls.Add(pbBudget);
+            cardBudget.Controls.Add(lblRemainValue);
+            cardBudget.Controls.Add(above);
+            cardBudget.Controls.Add(lblBudgetValue);
+            cardBudget.Controls.Add(NOW);
+            cardBudget.Controls.Add(lblUsedValue);
+            cardBudget.Controls.Add(MonthBudget);
+            cardBudget.Controls.Add(lblBudgetTitle);
+            cardBudget.Controls.Add(picBudget);
+            cardBudget.Location = new Point(790, 365);
+            cardBudget.Name = "cardBudget";
+            cardBudget.Size = new Size(415, 520);
+            cardBudget.TabIndex = 4;
+            // 
+            // panel10
+            // 
+            panel10.BackColor = Color.FromArgb(230, 233, 240);
+            panel10.Location = new Point(20, 169);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(375, 1);
+            panel10.TabIndex = 13;
+            // 
+            // panel8
+            // 
+            panel8.BackColor = Color.FromArgb(230, 233, 240);
+            panel8.Controls.Add(panel9);
+            panel8.Location = new Point(20, 120);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(375, 1);
+            panel8.TabIndex = 11;
+            // 
+            // panel9
+            // 
+            panel9.BackColor = Color.FromArgb(230, 233, 240);
+            panel9.Location = new Point(0, 2);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(375, 1);
+            panel9.TabIndex = 12;
+            // 
+            // lblRemainPercent
+            // 
+            lblRemainPercent.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblRemainPercent.Location = new Point(205, 285);
+            lblRemainPercent.Name = "lblRemainPercent";
+            lblRemainPercent.Size = new Size(190, 25);
+            lblRemainPercent.TabIndex = 10;
+            lblRemainPercent.Text = "100.0% 남음";
+            lblRemainPercent.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lblUsedPercent
+            // 
+            lblUsedPercent.AutoSize = true;
+            lblUsedPercent.ForeColor = Color.FromArgb(30, 60, 140);
+            lblUsedPercent.Location = new Point(20, 285);
+            lblUsedPercent.Name = "lblUsedPercent";
+            lblUsedPercent.Size = new Size(62, 15);
+            lblUsedPercent.TabIndex = 9;
+            lblUsedPercent.Text = "0.0% 사용";
+            // 
+            // pbBudget
+            // 
+            pbBudget.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pbBudget.Location = new Point(20, 250);
+            pbBudget.Name = "pbBudget";
+            pbBudget.Size = new Size(375, 24);
+            pbBudget.TabIndex = 8;
+            // 
+            // lblRemainValue
+            // 
+            lblRemainValue.Font = new Font("맑은 고딕", 12F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblRemainValue.Location = new Point(190, 180);
+            lblRemainValue.Name = "lblRemainValue";
+            lblRemainValue.Size = new Size(205, 30);
+            lblRemainValue.TabIndex = 7;
+            lblRemainValue.Text = "\\";
+            lblRemainValue.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // above
+            // 
+            above.AutoSize = true;
+            above.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            above.Location = new Point(20, 185);
+            above.Name = "above";
+            above.Size = new Size(80, 21);
+            above.TabIndex = 6;
+            above.Text = "남은 예산";
+            // 
+            // lblBudgetValue
+            // 
+            lblBudgetValue.Font = new Font("맑은 고딕", 12F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblBudgetValue.Location = new Point(190, 80);
+            lblBudgetValue.Name = "lblBudgetValue";
+            lblBudgetValue.Size = new Size(205, 30);
+            lblBudgetValue.TabIndex = 5;
+            lblBudgetValue.Text = "\\";
+            lblBudgetValue.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // NOW
+            // 
+            NOW.AutoSize = true;
+            NOW.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            NOW.Location = new Point(20, 135);
+            NOW.Name = "NOW";
+            NOW.Size = new Size(80, 21);
+            NOW.TabIndex = 4;
+            NOW.Text = "현재 지출";
+            // 
+            // lblUsedValue
+            // 
+            lblUsedValue.Font = new Font("맑은 고딕", 12F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblUsedValue.Location = new Point(190, 130);
+            lblUsedValue.Name = "lblUsedValue";
+            lblUsedValue.Size = new Size(205, 30);
+            lblUsedValue.TabIndex = 3;
+            lblUsedValue.Text = "\\";
+            lblUsedValue.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // MonthBudget
+            // 
+            MonthBudget.AutoSize = true;
+            MonthBudget.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            MonthBudget.Location = new Point(20, 85);
+            MonthBudget.Name = "MonthBudget";
+            MonthBudget.Size = new Size(64, 21);
+            MonthBudget.TabIndex = 2;
+            MonthBudget.Text = "월 예산";
+            // 
+            // lblBudgetTitle
+            // 
+            lblBudgetTitle.AutoSize = true;
+            lblBudgetTitle.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblBudgetTitle.Location = new Point(58, 14);
+            lblBudgetTitle.Name = "lblBudgetTitle";
+            lblBudgetTitle.Size = new Size(140, 25);
+            lblBudgetTitle.TabIndex = 1;
+            lblBudgetTitle.Text = "예산 사용 현황";
+            // 
+            // picBudget
+            // 
+            picBudget.Image = (Image)resources.GetObject("picBudget.Image");
+            picBudget.Location = new Point(15, 10);
+            picBudget.Name = "picBudget";
+            picBudget.Size = new Size(36, 36);
+            picBudget.SizeMode = PictureBoxSizeMode.Zoom;
+            picBudget.TabIndex = 0;
+            picBudget.TabStop = false;
+            // 
+            // imgColors
+            // 
+            imgColors.ColorDepth = ColorDepth.Depth32Bit;
+            imgColors.ImageSize = new Size(16, 16);
+            imgColors.TransparentColor = Color.Transparent;
+            // 
+            // StatisticsPage
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(245, 247, 252);
+            Controls.Add(cardBudget);
+            Controls.Add(cardCategory);
+            Controls.Add(cardPeriod);
+            Controls.Add(cardSummary);
+            Controls.Add(pnlHeader);
+            Name = "StatisticsPage";
+            Size = new Size(1220, 900);
+            pnlHeader.ResumeLayout(false);
+            pnlHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picHeader).EndInit();
+            cardSummary.ResumeLayout(false);
+            cardSummary.PerformLayout();
+            pnlSummaryInner.ResumeLayout(false);
+            pnlSummaryInner.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picTotal).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picSummary).EndInit();
+            cardPeriod.ResumeLayout(false);
+            cardPeriod.PerformLayout();
+            pnlPeriodSum.ResumeLayout(false);
+            pnlPeriodSum.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picCount).EndInit();
+            cardCategory.ResumeLayout(false);
+            cardCategory.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picChart).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picCategory).EndInit();
+            cardBudget.ResumeLayout(false);
+            cardBudget.PerformLayout();
+            panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picBudget).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Panel pnlHeader;
+        private Label lblSubTitle;
+        private Label lblTitle;
+        private PictureBox picHeader;
+        private Panel cardSummary;
+        private Panel pnlSummaryInner;
+        private Label lblSummaryTitle;
+        private PictureBox picSummary;
+        private Panel cardPeriod;
+        private Panel cardCategory;
+        private Panel cardBudget;
+        private Label lblCountValue;
+        private Label number;
+        private PictureBox pic;
+        private Panel pnlLine;
+        private PictureBox picTotal;
+        private Label lblTotalValue;
+        private Label amount;
+        private ComboBox cboMonth;
+        private Label Month;
+        private ComboBox cboYear;
+        private PictureBox picCount;
+        private Label Year;
+        private Label lblPeriodTitle;
+        private Panel pnlPeriodSum;
+        private Label lblPeriodValue;
+        private Label label11;
+        private Button btnSearch;
+        private ListView lvCategory;
+        private Label lblCategoryTitle;
+        private PictureBox picCategory;
+        private Label lblRemainValue;
+        private Label above;
+        private Label lblBudgetValue;
+        private Label NOW;
+        private Label lblUsedValue;
+        private Label MonthBudget;
+        private Label lblBudgetTitle;
+        private PictureBox picBudget;
+        private Panel panel10;
+        private Panel panel8;
+        private Panel panel9;
+        private Label lblRemainPercent;
+        private Label lblUsedPercent;
+        private ProgressBar pbBudget;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private PictureBox picChart;
+        private ImageList imgColors;
     }
 }

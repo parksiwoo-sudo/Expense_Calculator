@@ -5,30 +5,40 @@ namespace Expense_Calculator
     public partial class MainForm : Form
     {
         private List<Expense> expenses = new List<Expense>();
+
+        private ExpensePage expensePage;
+        private StatisticsPage statisticsPage;
+
         public MainForm()
         {
             InitializeComponent();
+
+            expensePage = new ExpensePage(expenses);
+            statisticsPage = new StatisticsPage(expenses);
+
+            ShowPage(expensePage);
+        }
+
+        private void ShowPage(UserControl page)
+        {
+            pnlContent.Controls.Clear();
+
+            page.Dock = DockStyle.Fill;
+            pnlContent.Controls.Add(page);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ExpensePage expensePage = new ExpensePage(expenses);
-
-            expensePage.Dock = DockStyle.Fill;
-
-            pnlContent.Controls.Clear();
-            pnlContent.Controls.Add(expensePage);
+            ShowPage(expensePage);
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
+            statisticsPage.RefreshStatistics();
 
-            ExpensePage expensePage = new ExpensePage(expenses);
+            statisticsPage.RefreshBudget(expensePage.MonthlyBudget);
 
-            expensePage.Dock = DockStyle.Fill;
-
-            pnlContent.Controls.Clear();
-            pnlContent.Controls.Add(expensePage);
+            ShowPage(statisticsPage);
         }
     }
 }

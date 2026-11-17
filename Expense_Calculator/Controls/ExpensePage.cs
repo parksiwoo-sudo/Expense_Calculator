@@ -15,6 +15,11 @@ namespace Expense_Calculator.Controls
         private List<Expense> expenses;
         // 기본 월 예산 100만원
         private decimal budget = 1000000m;
+        // StatisticsPage에서 월 예산을 가져갈 수 있도록 공개
+        public decimal MonthlyBudget
+        {
+            get { return budget; }
+        }
         public ExpensePage(List<Expense> expenses)
         {
             InitializeComponent();
@@ -136,27 +141,25 @@ namespace Expense_Calculator.Controls
         // [등록] 버튼 클릭 이벤트
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDescription.Text))
+            if (string.IsNullOrWhiteSpace(txtDescription.Text) ||
+                txtDescription.Text == "지출 내용")
             {
-                MessageBox.Show("지출 내용을 입력해주세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("지출 내용을 입력해주세요.", "알림",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string category = cboCategory.Text;
-            string date = dtpDate.Value.ToString("yyyy-MM-dd");
-            string desc = txtDescription.Text;
-            decimal amount = nudAmount.Value;
+            Expense expense = new Expense
+            {
+                Date = dtpDate.Value,
+                Category = cboCategory.Text,
+                Description = txtDescription.Text,
+                Amount = nudAmount.Value
+            };
 
-            int nextNo = lvExpenses.Items.Count + 1;
+            expenses.Add(expense);
 
-            // 순서: 번호, 날짜, 카테고리, 지출내용, 금액
-            ListViewItem item = new ListViewItem(nextNo.ToString()); // 0번째: 번호
-            item.SubItems.Add(date);                                 // 1번째: 날짜
-            item.SubItems.Add(category);                             // 2번째: 카테고리
-            item.SubItems.Add(desc);                                 // 3번째: 지출 내용
-            item.SubItems.Add(amount.ToString("N0") + "원");         // 4번째: 금액
-
-            lvExpenses.Items.Add(item);
+            RefreshListView();
 
             txtDescription.Clear();
             nudAmount.Value = 0;
@@ -169,21 +172,33 @@ namespace Expense_Calculator.Controls
         {
             if (lvExpenses.SelectedItems.Count == 0)
             {
-                MessageBox.Show("수정할 목록을 먼저 선택해주세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("수정할 항목을 선택해주세요.");
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(txtDescription.Text) ||
+                txtDescription.Text == "지출 내용")
+            {
+                MessageBox.Show("지출 내용을 입력해주세요.");
+                return;
+            }
+
+            // 선택한 ListView 행에 연결된 Expense 객체 가져오기
             ListViewItem item = lvExpenses.SelectedItems[0];
-            string category = cboCategory.Text;
+            Expense expense = (Expense)item.Tag;
 
-            item.SubItems[1].Text = dtpDate.Value.ToString("yyyy-MM-dd");
-            item.SubItems[2].Text = category;                            // 카테고리 수정
-            item.SubItems[3].Text = txtDescription.Text;
-            item.SubItems[4].Text = nudAmount.Value.ToString("N0") + "원";
+            // Expense 객체의 속성 수정
+            expense.Date = dtpDate.Value;
+            expense.Category = cboCategory.Text;
+            expense.Description = txtDescription.Text;
+            expense.Amount = nudAmount.Value;
 
-            MessageBox.Show("수정되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // 변경된 객체를 기준으로 ListView 갱신
+            RefreshListView();
 
             UpdateStatistics();
+
+            MessageBox.Show("지출 내역이 수정되었습니다.");
         }
 
         // [삭제] 버튼 클릭 이벤트
@@ -191,22 +206,39 @@ namespace Expense_Calculator.Controls
         {
             if (lvExpenses.SelectedItems.Count == 0)
             {
-                MessageBox.Show("삭제할 목록을 선택해주세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("삭제할 항목을 선택해주세요.");
                 return;
             }
 
+            DialogResult result = MessageBox.Show(
+                "선택한 지출 내역을 삭제하시겠습니까?",
+                "삭제 확인",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
+
+            // 선택한 ListView 행과 연결된 Expense 객체 삭제
             foreach (ListViewItem item in lvExpenses.SelectedItems)
             {
-                lvExpenses.Items.Remove(item);
+                Expense expense = item.Tag as Expense;
+
+                if (expense != null)
+                {
+                    expenses.Remove(expense);
+                }
             }
 
-            // 삭제 후 번호 재정렬 (0번째 열이 번호)
-            for (int i = 0; i < lvExpenses.Items.Count; i++)
-            {
-                lvExpenses.Items[i].Text = (i + 1).ToString();
-            }
+            // 삭제 후 ListView 갱신
+            RefreshListView();
 
             UpdateStatistics();
+
+            MessageBox.Show("지출 내역이 삭제되었습니다.");
         }
 
         // 목록 마우스 클릭 시 입력창에 값 채우기
@@ -294,6 +326,26 @@ namespace Expense_Calculator.Controls
             if (string.IsNullOrWhiteSpace(txtDescription.Text))
             {
                 txtDescription.Text = "지출 내용";
+            }
+        }
+        private void RefreshListView()
+        {
+            lvExpenses.Items.Clear();
+
+            for (int i = 0; i < expenses.Count; i++)
+            {
+                Expense expense = expenses[i];
+
+                ListViewItem item = new ListViewItem((i + 1).ToString());
+
+                item.SubItems.Add(expense.Date.ToString("yyyy-MM-dd"));
+                item.SubItems.Add(expense.Category);
+                item.SubItems.Add(expense.Description);
+                item.SubItems.Add(expense.Amount.ToString("N0") + "원");
+
+                item.Tag = expense; // ListView 행과 Expense 객체 연결
+                    
+                lvExpenses.Items.Add(item);
             }
         }
     }

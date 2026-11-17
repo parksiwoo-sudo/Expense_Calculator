@@ -46,7 +46,7 @@
             pnlSidebar.Font = new Font("맑은 고딕", 13F);
             pnlSidebar.Location = new Point(0, 0);
             pnlSidebar.Name = "pnlSidebar";
-            pnlSidebar.Size = new Size(220, 853);
+            pnlSidebar.Size = new Size(220, 803);
             pnlSidebar.TabIndex = 0;
             // 
             // button2
@@ -59,6 +59,7 @@
             button2.TabIndex = 2;
             button2.Text = "지출 통계\r\n(합산/분석)";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -86,21 +87,21 @@
             pnlContent.Dock = DockStyle.Fill;
             pnlContent.Location = new Point(220, 0);
             pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(1202, 853);
+            pnlContent.Size = new Size(1202, 803);
             pnlContent.TabIndex = 1;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1422, 853);
+            ClientSize = new Size(1422, 803);
             Controls.Add(pnlContent);
             Controls.Add(pnlSidebar);
             MinimumSize = new Size(1200, 750);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainForm";
-            Load += MainForm_Load;
+            
             pnlSidebar.ResumeLayout(false);
             ResumeLayout(false);
         }

@@ -18,7 +18,19 @@ namespace Expense_Calculator.Controls
         // StatisticsPage에서 월 예산을 가져갈 수 있도록 공개
         public decimal MonthlyBudget
         {
-            get { return budget; }
+            get
+            {
+                string text = txtBudget.Text.Replace(",", "")
+                                            .Replace("원", "")
+                                            .Trim();
+
+                if (decimal.TryParse(text, out decimal value))
+                {
+                    return value;
+                }
+
+                return budget;
+            }
         }
         public ExpensePage(List<Expense> expenses)
         {

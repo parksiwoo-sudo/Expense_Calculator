@@ -14,7 +14,7 @@ namespace Expense_Calculator.Controls
         // 카테고리 이름과 색
         private readonly string[] _categories =
         {
-            "식비", "교통비", "쇼핑", "문화생활", "생활용품", "기타"
+            "식비", "교통비", "쇼핑", "문화생활", "기타"
         };
 
         private readonly Color[] _colors =
@@ -23,12 +23,11 @@ namespace Expense_Calculator.Controls
             Color.FromArgb(76, 175, 80),
             Color.FromArgb(255, 179, 0),
             Color.FromArgb(240, 98, 146),
-            Color.FromArgb(149, 117, 205),
             Color.FromArgb(189, 189, 200)
         };
 
         // 카테고리별 지출 금액
-        private decimal[] _sums = new decimal[6];
+        private decimal[] _sums = new decimal[5];
 
         // MainForm에서 전달받은 지출 데이터
         private List<Expense> expenses;

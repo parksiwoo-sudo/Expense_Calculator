@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             pnlSidebar = new Panel();
-            pnlContent = new Panel();
-            label1 = new Label();
-            button1 = new Button();
             button2 = new Button();
+            button1 = new Button();
+            label1 = new Label();
+            pnlContent = new Panel();
             pnlSidebar.SuspendLayout();
             SuspendLayout();
             // 
@@ -49,22 +49,16 @@
             pnlSidebar.Size = new Size(220, 853);
             pnlSidebar.TabIndex = 0;
             // 
-            // pnlContent
+            // button2
             // 
-            pnlContent.Dock = DockStyle.Fill;
-            pnlContent.Location = new Point(220, 0);
-            pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(1202, 853);
-            pnlContent.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.Font = new Font("맑은 고딕", 13F);
-            label1.Location = new Point(21, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(170, 63);
-            label1.TabIndex = 0;
-            label1.Text = "지출계산기";
+            button2.BackColor = SystemColors.GradientActiveCaption;
+            button2.Font = new Font("맑은 고딕", 10F);
+            button2.Location = new Point(3, 136);
+            button2.Name = "button2";
+            button2.Size = new Size(211, 82);
+            button2.TabIndex = 2;
+            button2.Text = "지출 통계\r\n(합산/분석)";
+            button2.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
@@ -78,16 +72,22 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
-            // button2
+            // label1
             // 
-            button2.BackColor = SystemColors.GradientActiveCaption;
-            button2.Font = new Font("맑은 고딕", 10F);
-            button2.Location = new Point(3, 136);
-            button2.Name = "button2";
-            button2.Size = new Size(211, 82);
-            button2.TabIndex = 2;
-            button2.Text = "지출 통계\r\n(합산/분석)";
-            button2.UseVisualStyleBackColor = false;
+            label1.Font = new Font("맑은 고딕", 13F);
+            label1.Location = new Point(21, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(170, 63);
+            label1.TabIndex = 0;
+            label1.Text = "지출계산기";
+            // 
+            // pnlContent
+            // 
+            pnlContent.Dock = DockStyle.Fill;
+            pnlContent.Location = new Point(220, 0);
+            pnlContent.Name = "pnlContent";
+            pnlContent.Size = new Size(1202, 853);
+            pnlContent.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -100,6 +100,7 @@
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainForm";
+            Load += MainForm_Load;
             pnlSidebar.ResumeLayout(false);
             ResumeLayout(false);
         }

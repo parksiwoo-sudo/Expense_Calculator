@@ -5,16 +5,16 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using System.Collections.Generic;
 using Expense_Calculator;
+
 namespace Expense_Calculator.Controls
 {
-
     public partial class ExpensePage : UserControl
     {
         private List<Expense> expenses;
         // 기본 월 예산 100만원
         private decimal budget = 1000000m;
+
         // StatisticsPage에서 월 예산을 가져갈 수 있도록 공개
         public decimal MonthlyBudget
         {
@@ -32,6 +32,7 @@ namespace Expense_Calculator.Controls
                 return budget;
             }
         }
+
         public ExpensePage(List<Expense> expenses)
         {
             InitializeComponent();
@@ -48,26 +49,25 @@ namespace Expense_Calculator.Controls
 
             // 최초 통계 갱신
             UpdateStatistics();
-
-            // 지출 내용 입력창 이벤트
-
         }
-        // 예산 텍스트박스가 바뀔 때 실행되는 이벤트 (sender에 ? 추가하여 경고 해결)
+
+        // 예산 텍스트박스가 바뀔 때 실행되는 이벤트
         private void TxtBudget_TextChanged(object? sender, EventArgs e)
         {
             UpdateStatistics();
         }
 
-        // 리스트뷰 컬럼(열) 구조 및 오너 드로우 설정 (카테고리에 아이콘 표시)
+        // 리스트뷰 컬럼(열) 구조 및 오너 드로우 설정 (카테고리에 아이콘 표시 + 선택 행 노란색 하이라이트)
         private void InitListView()
         {
             lvExpenses.View = View.Details;
             lvExpenses.FullRowSelect = true;
             lvExpenses.GridLines = true;
-            lvExpenses.OwnerDraw = true; // 카테고리 칸에 아이콘을 직접 그리기 위해 필수!
+            lvExpenses.OwnerDraw = true; // 아이콘 및 커스텀 배경색 처리를 위해 필수!
 
             lvExpenses.DrawColumnHeader += (sender, e) => e.DrawDefault = true;
             lvExpenses.DrawSubItem += LvExpenses_DrawSubItem;
+            lvExpenses.DrawItem += (sender, e) => { /* SubItem 단위로 그리므로 Item 전체 드로우는 비워둡니다 */ };
 
             lvExpenses.Columns.Clear();
             lvExpenses.Columns.Add("번호", 60, HorizontalAlignment.Center);       // 0번째 열
@@ -77,6 +77,7 @@ namespace Expense_Calculator.Controls
             lvExpenses.Columns.Add("금액", 100, HorizontalAlignment.Right);     // 4번째 열
 
             lvExpenses.MouseClick += LvExpenses_MouseClick;
+            lvExpenses.SelectedIndexChanged += (sender, e) => lvExpenses.Invalidate(); // 선택 변경 시 화면 다시 그려서 색상 반영
         }
 
         // 카테고리 이름에 따른 이미지 리스트 번호(Index) 반환 함수
@@ -94,10 +95,30 @@ namespace Expense_Calculator.Controls
             }
         }
 
-        // 카테고리 컬럼에 아이콘과 글자를 나란히 그려주는 커스텀 드로잉 함수
+        // 선택된 항목의 배경색을 노란색으로 처리하고 아이콘 및 텍스트를 그려주는 커스텀 드로잉 함수
         private void LvExpenses_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
         {
-            e.DrawBackground();
+            // 선택된 행인지 확인
+            bool isSelected = e.Item.Selected;
+
+            // 배경색 처리 (선택된 경우 노란색, 아닐 경우 기본 배경)
+            if (isSelected)
+            {
+                using (Brush yellowBrush = new SolidBrush(Color.LemonChiffon)) // 은은한 노란색 (원하시면 Color.Yellow 등으로 변경 가능)
+                {
+                    e.Graphics.FillRectangle(yellowBrush, e.Bounds);
+                }
+
+                // 테두리 선 살짝 그려주기 (선택 가시성 향상)
+                using (Pen pen = new Pen(Color.Gold))
+                {
+                    e.Graphics.DrawRectangle(pen, e.Bounds);
+                }
+            }
+            else
+            {
+                e.DrawBackground();
+            }
 
             if (e.ColumnIndex == 2) // '카테고리' 컬럼인 경우에만 아이콘을 함께 그림
             {
@@ -114,10 +135,10 @@ namespace Expense_Calculator.Controls
                 if (imageList1 != null && iconIndex >= 0 && iconIndex < imageList1.Images.Count)
                 {
                     e.Graphics.DrawImage(imageList1.Images[iconIndex], x, y, imageWidth, imageHeight);
-                    x += imageWidth + 6; // 이미지 너비만큼 텍스트 시작 위치를 오른쪽으로 미룸
+                    x += imageWidth + 6;
                 }
 
-                // 카테고리 텍스트 출력 (e.Font -> e.SubItem.Font로 수정)
+                // 카테고리 텍스트 출력
                 using (Brush brush = new SolidBrush(e.SubItem.ForeColor))
                 {
                     StringFormat sf = new StringFormat
@@ -145,7 +166,7 @@ namespace Expense_Calculator.Controls
                         sf.Alignment = StringAlignment.Far;
 
                     Rectangle rect = new Rectangle(e.Bounds.X + 4, e.Bounds.Y, e.Bounds.Width - 8, e.Bounds.Height);
-                    e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, brush, rect, sf); // e.Font -> e.SubItem.Font로 수정
+                    e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, brush, rect, sf);
                 }
             }
         }
@@ -153,11 +174,31 @@ namespace Expense_Calculator.Controls
         // [등록] 버튼 클릭 이벤트
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            // 1. 카테고리 유효성 검사 (선택되지 않았거나 빈 경우)
+            if (string.IsNullOrWhiteSpace(cboCategory.Text) || cboCategory.Text == "카테고리")
+            {
+                MessageBox.Show("카테고리를 선택해주세요.", "알림",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cboCategory.Focus();
+                return;
+            }
+
+            // 2. 지출 내용 유효성 검사
             if (string.IsNullOrWhiteSpace(txtDescription.Text) ||
                 txtDescription.Text == "지출 내용")
             {
                 MessageBox.Show("지출 내용을 입력해주세요.", "알림",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDescription.Focus();
+                return;
+            }
+
+            // 3. 지출 금액 유효성 검사 (0원 이하인 경우)
+            if (nudAmount.Value <= 0)
+            {
+                MessageBox.Show("지출 금액은 0원보다 커야 합니다.", "알림",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nudAmount.Focus();
                 return;
             }
 
@@ -175,6 +216,7 @@ namespace Expense_Calculator.Controls
 
             txtDescription.Clear();
             nudAmount.Value = 0;
+            cboCategory.SelectedIndex = -1; // 카테고리 선택 초기화
 
             UpdateStatistics();
         }
@@ -184,14 +226,32 @@ namespace Expense_Calculator.Controls
         {
             if (lvExpenses.SelectedItems.Count == 0)
             {
-                MessageBox.Show("수정할 항목을 선택해주세요.");
+                MessageBox.Show("수정할 항목을 선택해주세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            // 카테고리 유효성 검사
+            if (string.IsNullOrWhiteSpace(cboCategory.Text) || cboCategory.Text == "카테고리")
+            {
+                MessageBox.Show("카테고리를 선택해주세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cboCategory.Focus();
+                return;
+            }
+
+            // 지출 내용 유효성 검사
             if (string.IsNullOrWhiteSpace(txtDescription.Text) ||
                 txtDescription.Text == "지출 내용")
             {
-                MessageBox.Show("지출 내용을 입력해주세요.");
+                MessageBox.Show("지출 내용을 입력해주세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDescription.Focus();
+                return;
+            }
+
+            // 지출 금액 유효성 검사
+            if (nudAmount.Value <= 0)
+            {
+                MessageBox.Show("지출 금액은 0원보다 커야 합니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nudAmount.Focus();
                 return;
             }
 
@@ -210,7 +270,7 @@ namespace Expense_Calculator.Controls
 
             UpdateStatistics();
 
-            MessageBox.Show("지출 내역이 수정되었습니다.");
+            MessageBox.Show("지출 내역이 수정되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // [삭제] 버튼 클릭 이벤트
@@ -218,7 +278,7 @@ namespace Expense_Calculator.Controls
         {
             if (lvExpenses.SelectedItems.Count == 0)
             {
-                MessageBox.Show("삭제할 항목을 선택해주세요.");
+                MessageBox.Show("삭제할 항목을 선택해주세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -250,7 +310,7 @@ namespace Expense_Calculator.Controls
 
             UpdateStatistics();
 
-            MessageBox.Show("지출 내역이 삭제되었습니다.");
+            MessageBox.Show("지출 내역이 삭제되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // 목록 마우스 클릭 시 입력창에 값 채우기
@@ -260,17 +320,17 @@ namespace Expense_Calculator.Controls
             {
                 ListViewItem item = lvExpenses.SelectedItems[0];
 
-                // 날짜 (1번째 SubItem)
+                // 날짜
                 if (DateTime.TryParse(item.SubItems[1].Text, out DateTime parsedDate))
                 {
                     dtpDate.Value = parsedDate;
                 }
-                // 카테고리 (2번째 SubItem)
+                // 카테고리
                 cboCategory.Text = item.SubItems[2].Text;
-                // 지출 내용 (3번째 SubItem)
+                // 지출 내용
                 txtDescription.Text = item.SubItems[3].Text;
 
-                // 금액 (4번째 SubItem)
+                // 금액
                 string amountStr = item.SubItems[4].Text.Replace("원", "").Replace(",", "").Trim();
                 if (decimal.TryParse(amountStr, out decimal parsedAmount))
                 {
@@ -314,15 +374,15 @@ namespace Expense_Calculator.Controls
                 // 퍼센트 숫자 라벨 반영 (소수점 첫째 자리까지)
                 lblPercent.Text = percent.ToString("F1") + "%";
 
-                // 프로그래스바 게이지 반영 (progressBarBudget)
+                // 프로그래스바 게이지 반영
                 int intPercent = (int)percent;
                 if (intPercent > 100) intPercent = 100;
                 if (intPercent < 0) intPercent = 0;
 
                 progressBarBudget.Value = intPercent;
             }
-
         }
+
         // 지출 내용 입력창에 포커스가 들어왔을 때
         private void txtDescription_Enter(object sender, EventArgs e)
         {
@@ -340,6 +400,7 @@ namespace Expense_Calculator.Controls
                 txtDescription.Text = "지출 내용";
             }
         }
+
         private void RefreshListView()
         {
             lvExpenses.Items.Clear();
@@ -356,7 +417,7 @@ namespace Expense_Calculator.Controls
                 item.SubItems.Add(expense.Amount.ToString("N0") + "원");
 
                 item.Tag = expense; // ListView 행과 Expense 객체 연결
-                    
+
                 lvExpenses.Items.Add(item);
             }
         }

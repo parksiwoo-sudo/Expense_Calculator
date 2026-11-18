@@ -410,7 +410,7 @@ namespace Expense_Calculator.Controls
                 Expense expense = expenses[i];
 
                 ListViewItem item = new ListViewItem((i + 1).ToString());
-
+                //설
                 item.SubItems.Add(expense.Date.ToString("yyyy-MM-dd"));
                 item.SubItems.Add(expense.Category);
                 item.SubItems.Add(expense.Description);

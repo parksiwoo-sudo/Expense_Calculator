@@ -1,12 +1,13 @@
 ﻿
+using Expense_Calculator;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Windows.Forms;
-using System.Collections.Generic;
-using Expense_Calculator;
 using System.Linq;
+using System.Reflection;
+using System.Windows.Forms;
 namespace Expense_Calculator.Controls
 {
     public partial class StatisticsPage : UserControl
@@ -54,9 +55,6 @@ namespace Expense_Calculator.Controls
             // 원형 차트 그리기 이벤트 연결
             picChart.Paint += picChart_Paint;
 
-            // 실제 지출 데이터를 이용해 통계 계산
-            RefreshStatistics();
-
             InitializePeriodComboBoxes();
             RefreshStatistics();
 
@@ -74,7 +72,6 @@ namespace Expense_Calculator.Controls
             lblTotalValue.Text = "₩" + totalAmount.ToString("N0");
             lblCountValue.Text = expenseCount.ToString() + "건";
 
-            InitializePeriodComboBoxes();
             decimal[] sums = new decimal[6];
 
             foreach (Expense expense in expenses)
@@ -83,7 +80,7 @@ namespace Expense_Calculator.Controls
 
                 // 등록된 카테고리가 아니면 기타로 분류
                 if (index == -1)
-                    index = 5;
+                    index = _categories.Length - 1;
 
                 sums[index] += expense.Amount;
             }
